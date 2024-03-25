@@ -1,4 +1,5 @@
 import pygame
+import random
 
 pygame.init()
 
@@ -20,6 +21,17 @@ pygame.display.set_icon(icon)
 #################################################################
 # создаем цели
 target_img = pygame.image.load("icon/klipartz.com.png")
+
+# задаем размер цели
+target_width = 50
+target_height = 50
+
+# задаем случайные координаты цели
+target_x = random.randint(0, SCREEN_WIDTH - target_width)
+target_y = random.randint(0, SCREEN_HEIGHT - target_height)
+
+# задаем случайный цвет фона
+color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 #################################################################
 
 running = True
