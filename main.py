@@ -36,6 +36,10 @@ color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 #################################################################
 
 #################################################################
+# Переменная для подсчета очков
+score = 0
+clock = pygame.time.Clock()
+
 running = True
 while running:
     # зальем экран цветом нашим случайным цветом
@@ -47,12 +51,23 @@ while running:
         if event.type == pygame.MOUSEBUTTONDOWN:
             mouse_x, mouse_y = pygame.mouse.get_pos()
             if target_x < mouse_x < target_x + target_width and target_y < mouse_y < target_y + target_height:
+                score += 1
                 # задаем случайные координаты цели
                 target_x = random.randint(0, SCREEN_WIDTH - target_width)
                 target_y = random.randint(0, SCREEN_HEIGHT - target_height)
+
     # отрисовываем нашу мишень
     screen.blit(target_img, (target_x, target_y))
+
+    # Отображаем счёт
+    font = pygame.font.Font(None, 36)
+    score_text = font.render(f"Счет: {score}", True, (255, 255, 255))
+    screen.blit(score_text, (10, 10))
+
     # обновление экрана
     pygame.display.update()
+
+    # Устанавливаем частоту кадров
+    clock.tick(60)
 #################################################################
 pygame.quit()
